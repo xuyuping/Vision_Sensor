@@ -29,34 +29,29 @@ void loop()
   { 
     if (MU.detected() == true)
     {
-      if (MU.getWidth()>35){
+      if (MU.getWidth()>32){
           car_back();
-          delay(100);
       }
-      else if (MU.getWidth()<32){
+      else if (MU.getWidth()<28){
           car_forward();
-          delay(100);
       }
       
       if (MU.getX()<40){
           car_right();
-          delay(100);
         }
       else if (MU.getX()>60){ 
           car_left();
-          delay(100);
         }
-               
-          car_stop();  
+        
+      delay(50);      
+      car_stop();  
     }
     
     else
-      Serial.println("No object detected");
-      
+      Serial.println("No object detected");     
   }
   else
     Serial.println("No data or too many detected");
-  delay(50);
   
 }
 
