@@ -6,7 +6,6 @@ morpx .inc
 
 #include "VisionSensor.h"
 
-Servo servoX;
 int E1=5;    //PWM1 pin
 int M1=4;    //motor1 pin
 int E2=6;    //motor2 pin
@@ -28,45 +27,52 @@ void loop()
 
   if (MU.valid()>0)  
   { 
-    if(MU.detected() == true)
+    if (MU.detected() == true)
     {
-     if (MU.getX()<40){
-        car_right();
-        delay(100);
+      if (MU.getWidth()>35){
+          car_back();
+          delay(100);
+      }
+      else if (MU.getWidth()<32){
+          car_forward();
+          delay(100);
+      }
+      
+      if (MU.getX()<40){
+          car_right();
+          delay(100);
         }
-     else if (MU.getX()>60){ 
-        car_left();
-        delay(100);
+      else if (MU.getX()>60){ 
+          car_left();
+          delay(100);
         }
-     else 
-        car_stop();
+               
+          car_stop();  
     }
     
     else
       Serial.println("No object detected");
-      car_stop();
       
   }
   else
     Serial.println("No data or too many detected");
-    car_stop();
   delay(50);
+  
 }
 
-void car_foward()
-
+void car_forward()
 {
-      digitalWrite(M1,LOW);         
+      digitalWrite(M1,HIGH);         
       analogWrite(E1, Val);   
-      digitalWrite(M2,LOW);
+      digitalWrite(M2,HIGH);
       analogWrite(E2, Val);   
- }
+}
  
- void car_back()
+void car_back()
 {
-     digitalWrite(M1,HIGH);     
+     digitalWrite(M1,LOW);     
      analogWrite(E1, Val);   
-     digitalWrite(M2,HIGH);
+     digitalWrite(M2,LOW);
      analogWrite(E2, Val);   
 }
 
@@ -84,7 +90,7 @@ void car_right()
      analogWrite(E1, Val);    
      digitalWrite(M2,HIGH);
      analogWrite(E2, Val);  
-  }
+ }
 
 void car_stop()
 {
@@ -93,3 +99,4 @@ void car_stop()
      digitalWrite(M2,LOW);
      analogWrite(E2, 0);
 }  
+
