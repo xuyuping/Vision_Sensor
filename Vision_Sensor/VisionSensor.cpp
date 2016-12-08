@@ -23,7 +23,7 @@ bool VisionSensor::valid(void)
   return _valid;
 }
 
-void VisionSensor::routine(void)
+void VisionSensor::search(void)
 {
   while(m_puart->available() > 0)
   {

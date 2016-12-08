@@ -15,7 +15,7 @@ void setup()
 
 void loop()
 {
-  MU.routine();    
+  MU.search();    
 
   if (MU.valid()>0)  
   { 

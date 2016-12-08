@@ -10,7 +10,7 @@ class VisionSensor
    VisionSensor(HardwareSerial &uart, uint32_t baud = 115200);
    void begin(void);
    bool valid(void);
-   void routine(void);
+   void search(void);
    int getX(void);
    int getY(void);
    int getWidth(void);
